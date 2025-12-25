@@ -8306,36 +8306,54 @@ requestAnimationFrame(() =&gt; {
   document.addEventListener(&quot;click&quot;, handleClick);
 });
 &lt;/script&gt;</tw-passagedata><tw-passagedata pid="165" name="DIR-LAB" tags="" position="775,475" size="100,100">&lt;div class=&quot;scene&quot;&gt;
-  &lt;video class=&quot;video-bg&quot; id=&quot;myVideo&quot; playsinline&gt;
-    &lt;source src=&quot;dir-lab.mp4&quot; type=&quot;video/mp4&quot;&gt;
-    Dein Browser unterstützt kein HTML5-Video.
-  &lt;/video&gt;
 
-
-  &lt;div class=&quot;overlay&quot;&gt;
-    &lt;h2&gt;LABORATORIO&lt;/h2&gt;
-    &lt;div class=&quot;text&quot;&gt;
-      &lt;p&gt;&lt;/p&gt;
-      &lt;ul&gt;
-        
-      
-        &lt;li&gt;[[LABORATORIO]]&lt;/li&gt;
-       
-      &lt;/ul&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;map-container&quot;&gt;
-      &lt;img src=&quot;mapa_lab.png&quot; class=&quot;map&quot;&gt;
-    &lt;/div&gt;
+  &lt;!-- Vollbild YouTube Hintergrund --&gt;
+  &lt;div class=&quot;youtube-bg&quot;&gt;
+    &lt;iframe
+      id=&quot;bgVideo&quot;
+      src=&quot;https://www.youtube.com/embed/2ZouZHIfLqU?enablejsapi=1&amp;playsinline=1&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;rel=0&amp;iv_load_policy=3&quot;
+      frameborder=&quot;0&quot;
+      allow=&quot;autoplay; encrypted-media&quot;
+      allowfullscreen
+    &gt;&lt;/iframe&gt;
   &lt;/div&gt;
+
+  &lt;!-- Titel oben links --&gt;
+  &lt;div class=&quot;title&quot;&gt;
+    &lt;h1&gt;LABORATORIO&lt;/h1&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Button unten mittig --&gt;
+  &lt;div class=&quot;nav-buttons&quot;&gt;
+    &lt;span class=&quot;btn-link&quot;&gt;[[Seguir|Seguir20]]&lt;/span&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Karte unten rechts --&gt;
+  &lt;div class=&quot;map-box&quot;&gt;
+    &lt;img src=&quot;mapa_lab.png&quot; class=&quot;map&quot;&gt;
+  &lt;/div&gt;
+
 &lt;/div&gt;
 
 &lt;script&gt;
-  document.addEventListener(&#39;click&#39;, function () {
-    const video = document.getElementById(&#39;myVideo&#39;);
-    if (video &amp;&amp; video.paused) {
-      video.play().catch(err =&gt; console.warn(&quot;Video konnte nicht automatisch gestartet werden:&quot;, err));
-    }
-  }, { once: true });
+/* Click-Event wird nach jedem Passagewechsel neu gesetzt */
+requestAnimationFrame(() =&gt; {
+
+  function handleClick() {
+    const iframe = document.getElementById(&quot;bgVideo&quot;);
+    if (!iframe) return;
+
+    iframe.contentWindow.postMessage(JSON.stringify({
+      event: &quot;command&quot;,
+      func: &quot;playVideo&quot;
+    }), &quot;*&quot;);
+
+    /* Listener entfernen, damit er nur EINMAL auslöst */
+    document.removeEventListener(&quot;click&quot;, handleClick);
+  }
+
+  document.addEventListener(&quot;click&quot;, handleClick);
+});
 &lt;/script&gt;</tw-passagedata><tw-passagedata pid="166" name="DIR-HER" tags="" position="275,600" size="100,100">::HERBARIO
 &lt;div class=&quot;scene&quot;&gt;
 
@@ -9946,7 +9964,7 @@ requestAnimationFrame(() =&gt; {
 &lt;div class=&quot;youtube-bg&quot;&gt;
   &lt;iframe
     id=&quot;bgVideo&quot;
-    src=&quot;https://www.youtube.com/embed/ft_31sb2dDk?enablejsapi=1&amp;playsinline=1&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;rel=0&amp;iv_load_policy=3&quot;
+    src=&quot;https://www.youtube.com/embed/NjwWTBYo6wI?enablejsapi=1&amp;playsinline=1&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;rel=0&amp;iv_load_policy=3&quot;
     frameborder=&quot;0&quot;
     allow=&quot;autoplay; encrypted-media&quot;
     allowfullscreen
@@ -10962,7 +10980,7 @@ requestAnimationFrame(() =&gt; {
 
   document.addEventListener(&quot;click&quot;, handleClick);
 });
-&lt;/script&gt;</tw-passagedata><tw-passagedata pid="220" name="HERBARIO&quot;" tags="" position="250,975" size="100,100">::HERBARIO
+&lt;/script&gt;</tw-passagedata><tw-passagedata pid="220" name="HERBARIO2" tags="" position="250,975" size="100,100">::HERBARIO
 &lt;div class=&quot;scene&quot;&gt;
 
   &lt;!-- Vollbild YouTube Hintergrund --&gt;
@@ -11605,7 +11623,7 @@ requestAnimationFrame(() =&gt; {
 
   &lt;!-- Button unten mittig --&gt;
   &lt;div class=&quot;nav-buttons&quot;&gt;
-    &lt;span class=&quot;btn-link&quot;&gt;[[Seguir|HERBARIO]]&lt;/span&gt;
+    &lt;span class=&quot;btn-link&quot;&gt;[[Seguir|HERBARIO2]]&lt;/span&gt;
   &lt;/div&gt;
 
   &lt;!-- Karte unten rechts --&gt;
